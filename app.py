@@ -44,16 +44,20 @@ NEO4J = Neo4jConnection(os.environ.get('NEO4J_BOLT_URL'),
                         os.environ.get('NEO4J_PASSWORD'))
  
  
-@app.route("/list_all_eestecers")
-def list_all_eestecers():
-    data = {"eestecers": []}
-    for record in NEO4J.query("MATCH (p:Person) RETURN p limit 3"):
-        data['eestecers'].append({
-            "name": record[0]['name'],
-            "born": record[0]['born'],
+@app.route("/information_about_organization")
+def information_about_organization():
+    data = {"organization": []}
+    for record in NEO4J.query("MATCH (o:Organization) RETURN o limit 1"):
+        data['organization'].append({
+            "organization_name": record[0]['organization_name'],
+            "organization_description": record[0]['organization_description'],
+            "supervisor_room": record[0]['supervisor_room'],
+            "creation_date": record[0]['creation_date'],
+            "number_of_members": record[0]['number_of_members'],
+            "organization_supervasior": record[0]['organization_supervasior'],
+            "number_of_active_projects": record[0]['number_of_active_projects'],
         })
     return data
- 
  
 if __name__ == '__main__':
     app.run()
