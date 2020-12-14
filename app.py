@@ -73,7 +73,7 @@ def news():
 @app.route("/projects")
 def projects():
     data = {"projects": []}
-    for record in NEO4J.query("MATCH (d:News) RETURN d"):
+    for record in NEO4J.query("MATCH (n:Project) RETURN n"):
         data['projects'].append({
             "date": record[0]['date'],
             "description": record[0]['description'],
