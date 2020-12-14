@@ -58,6 +58,16 @@ def information_about_organization():
             "number_of_active_projects": record[0]['number_of_active_projects'],
         })
     return data
+
+@app.route("/news")
+def information_about_organization():
+    data = {"news": []}
+    for record in NEO4J.query("MATCH (d:News) RETURN d"):
+        data['news'].append({
+            "date": record[0]['date'],
+            "descriptionOfNews": record[0]['descriptionOfNews'],
+        })
+    return data
  
 if __name__ == '__main__':
     app.run()
