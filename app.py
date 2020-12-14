@@ -60,7 +60,7 @@ def information_about_organization():
     return data
 
 @app.route("/news")
-def information_about_organization():
+def news():
     data = {"news": []}
     for record in NEO4J.query("MATCH (d:News) RETURN d"):
         data['news'].append({
