@@ -96,6 +96,28 @@ def activitySheet():
         })
     return data
 
+@app.route("/login")
+def login():
+    data = {"login": []}
+    for record in NEO4J.query("MATCH (n:Person) RETURN n"):
+        data['contacts'].append({
+            "name": record[0]['name'],
+            "login": record[0]['login'],
+            "pass": record[0]['pass'],
+        })
+    return data
+
+@app.route("/contacts")
+def contacts():
+    data = {"contacts": []}
+    for record in NEO4J.query("MATCH (n:Person) RETURN n"):
+        data['contacts'].append({
+            "name": record[0]['name'],
+            "telephoneNumber": record[0]['telephoneNumber'],
+            "mail": record[0]['mail'],
+        })
+    return data
+
 
 if __name__ == '__main__':
     app.run()
