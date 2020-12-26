@@ -88,6 +88,7 @@ def activitySheet():
     for record in NEO4J.query("MATCH (n:Person) RETURN n"):
         data['activitySheet'].append({
             "name": record[0]['name'],
+            "fieldOfStudy": record[0]['fieldOfStudy'],
             "faculty": record[0]['faculty'],
             "yearOfStudy": record[0]['yearOfStudy'],
             "position": record[0]['position'],
