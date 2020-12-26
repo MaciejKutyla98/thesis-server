@@ -100,7 +100,7 @@ def activitySheet():
 def login():
     data = {"login": []}
     for record in NEO4J.query("MATCH (n:Person) RETURN n"):
-        data['contacts'].append({
+        data['login'].append({
             "name": record[0]['name'],
             "login": record[0]['login'],
             "pass": record[0]['pass'],
