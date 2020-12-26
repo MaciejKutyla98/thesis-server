@@ -119,6 +119,18 @@ def contacts():
         })
     return data
 
+@app.route("/teams")
+def teams():
+    data = {"teams": []}
+    for record in NEO4J.query("MATCH (n:Team) RETURN n"):
+        data['teams'].append({
+            "teamName": record[0]['teamName'],
+            "teamDescription": record[0]['teamDescription'],
+            "teamCoordinators": record[0]['teamCoordinators'],
+            "numberOfMembers": record[0]['numberOfMembers'],
+        })
+    return data
+
 
 if __name__ == '__main__':
     app.run()
