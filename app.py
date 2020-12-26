@@ -82,6 +82,20 @@ def projects():
         })
     return data
 
+@app.route("/activitySheet")
+def projects():
+    data = {"activitySheet": []}
+    for record in NEO4J.query("MATCH (n:Person) RETURN n"):
+        data['activitySheet'].append({
+            "name": record[0]['name'],
+            "faculty": record[0]['faculty'],
+            "yearOfStudy": record[0]['yearOfStudy'],
+            "position": record[0]['position'],
+            "internationalActivity": record[0]['internationalActivity'],
+            "currentStatus": record[0]['currentStatus'],
+        })
+    return data
+
 
 if __name__ == '__main__':
     app.run()
