@@ -135,7 +135,7 @@ def teams():
 def createNewUser():
     login = request.args.get('login')
     password = request.args.get('pass')
-    my_query = "CREATE(p:Person {login:'"+login"', pass:'"+password"'}) Return p"
+    my_query = "CREATE(p:Person {login:'"+ login + "', pass:'"+ password + "'}) Return p"
     NEO4j.query(my_query)
 
 
