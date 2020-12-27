@@ -1,6 +1,6 @@
 import os
  
-from flask import Flask
+from flask import Flask, request
 from neo4j import GraphDatabase
  
 app = Flask(__name__)
@@ -131,8 +131,9 @@ def teams():
         })
     return data
 
-@app.route("/createNewUser", methods = ['POST'])
-def createNewUser(request):
+@app.route("/createNewUser", methods=['GET', 'POST'])
+def createNewUser():
+    request.method == 'POST'
     login = request.args.get('login')
     password = request.args.get('pass')
     my_query = "CREATE(p:Person {login:'"+ login + "', pass:'"+ password + "'}) Return p"
