@@ -137,7 +137,8 @@ def createNewUser():
     login = request.args.get('login')
     password = request.args.get('pass')
     name = request.args.get('name')
-    my_query = "CREATE(p:Person {login:'"+ str(login) + "', pass:'"+ str(password) + "', name:'"+ str(name) + "'}) Return p"
+   # my_query = "CREATE(p:Person {login:'"+ str(login) + "', pass:'"+ str(password) + "', name:'"+ str(name) + "'}) Return p"
+    my_query = "CREATE(p:Person {login:'test', pass:'test', name:'test'}) Return p"
     NEO4J.query(my_query)
     return my_query
 
