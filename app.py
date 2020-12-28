@@ -133,13 +133,13 @@ def teams():
 
 @app.route("/createNewUser", methods=['GET', 'POST'])
 def createNewUser():
-    request.method == 'POST'
+    #request.method == 'POST'
     login = request.args.get('login')
     password = request.args.get('pass')
     name = request.args.get('name')
     my_query = "CREATE(p:Person {login:'"+ str(login) + "', pass:'"+ str(password) + "', name:'"+ str(name) + "'}) Return p"
     NEO4J.query(my_query)
-    return request.args
+    return my_query
 
 
 
