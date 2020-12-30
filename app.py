@@ -133,11 +133,19 @@ def teams():
 
 @app.route("/createNewUser", methods=['GET', 'POST'])
 def createNewUser():
-    #request.method == 'POST'
     login = request.args.get('login')
     password = request.args.get('pass')
     name = request.args.get('name')
     my_query = "CREATE(p:Person {login:'"+ str(login) + "', pass:'"+ str(password) + "', name:'"+ str(name) + "'}) Return p"
+    NEO4J.query(my_query)
+    return my_query
+
+@app.route("/createNews", methods=['GET', 'POST'])
+def createNews():
+    date = request.args.get('date')
+    descriptionOfNews = request.args.get('descriptionOfNews')
+    tittleOfNews = request.args.get('tittleOfNews')
+    my_query = "CREATE(n:News {date:'"+ str(date) + "', tittleOfNews:'"+ str(tittleOfNews) + "', descriptionOfNews:'"+ str(descriptionOfNews) + "'}) Return n"
     NEO4J.query(my_query)
     return my_query
 
